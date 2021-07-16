@@ -1,7 +1,7 @@
 # okta-siw-examples
 Collection of OKta Signin Widget Designs
 
-## [https://github.com/mortpanda/okta-siw-examples/tree/main/ciam-sample-siw-transparent]okta-siw-examples <br>
+## [https://github.com/mortpanda/okta-siw-examples/tree/main/ciam-sample-siw-transparent](okta-siw-examples) <br>
 <img src="/ciam-sample-siw-transparent/Capture.PNG" alt="drawing" width="600"/>
 
 ## ciam-sample-widget-v2 <br>
