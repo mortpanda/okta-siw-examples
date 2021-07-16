@@ -18,3 +18,6 @@ This code is to hide the dropdown box in "Settings" > "Customisation" > "Custom 
 Checkbox for things such as user consent and privacy policy
 
 <img src="/csm-apac-siw-checkbox-main/checkbox.png" alt="drawing" width="600"/>
+
+## stormtrooper
+<img src="/stormtrooper/stormtrooper.png" alt="drawing" width="600"/>
