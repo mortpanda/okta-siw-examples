@@ -1,0 +1,184 @@
+ <div id="okta-login-container"></div> 
+      <script type="text/javascript">
+        const oktaSignIn = new OktaSignIn({
+        language: 'en', 
+        i18n: {
+            //Overrides default text when using English. Override other languages by adding additional sections.
+            'en': {
+              'primaryauth.title': 'Log In',             // Changes the sign in text
+              'primaryauth.submit': 'Log In',            // Changes the sign in button
+              
+              // More e.g. [primaryauth.username.placeholder,  primaryauth.password.placeholder, needhelp, etc.].
+              // Full list here: https://github.com/okta/okta-signin-widget/blob/master/packages/@okta/i18n/dist/properties/login.properties
+            }
+          },
+         features: {
+         registration: true,                           // Enable self-service registration flow
+         rememberMe: true,                             // Setting to false will remove the checkbox to save username
+         multiOptionalFactorEnroll: true,         
+         },        
+         baseUrl: "",
+         redirectUri: "",
+         clientId: "",   //CLIENT ID GOES HERE
+         authParams: {
+           issuer: 'default',
+           responseType: ['token', 'id_token'],
+           responseMode: 'fragment',
+            display: 'page',
+
+             scope: [
+              'openid',
+              'email',
+              'profile'
+            ]
+         },
+         idpDisplay: 'SECONDARY',
+         idps: [{'type': 'FACEBOOK', 'id': ''},
+                 {'type': 'GOOGLE', 'id': ''}],
+     registration: {
+      parseSchema: function(schema, onSuccess, onFailure) {
+      console.log(schema.profileSchema);
+      onSuccess(schema);
+    },
+      preSubmit: function(postData, onSuccess, onFailure) {
+        // handle preSubmit callback
+        var getEmailvalue = document.getElementsByName('email')[0].value;
+        var getAcceptedPrivacyPolicyValue = document.getElementsByName('acceptedPrivacyPolicy')[0].value;
+        var getFirstName = document.getElementsByName('firstName')[0].value;
+        var getLastName = document.getElementsByName('lastName')[0].value;
+		
+        postData.acceptedPrivacyPolicy = Boolean(getAcceptedPrivacyPolicyValue);
+      	console.log(postData);
+        
+        if (getAcceptedPrivacyPolicyValue == "") {
+          var labelAcceptedPrivacyPolicy = document.getElementById('label-my-acceptedPrivacyPolicy');
+          if (document.getElementById('acceptedPrivacyPolicy-error') == undefined) {
+            labelAcceptedPrivacyPolicy.insertAdjacentHTML('afterend', "<p id='acceptedPrivacyPolicy-error' style='color:#d93934;'>You must agree to the terms of use.</p>");
+          }
+        }
+        else {
+          onSuccess(postData);
+        }
+      },
+      postSubmit: function(response, onSuccess, onFailure) {
+        // handle postsubmit callback
+        
+        onSuccess(response);
+      }
+    }       
+});
+  
+      oktaSignIn.on('afterRender', function (context) {
+  	  console.log(context.controller);        
+       
+      if (context.controller== 'registration') {
+        // Retrieve fields
+        var nativElemFirstName = document.getElementsByName('firstName')[0];
+        var nativElemLastName = document.getElementsByName('lastName')[0];
+        var nativElemEmail = document.getElementsByName('email')[0];
+        var nativElemPwd = document.getElementsByName('password')[0];
+        var nativElemAcceptedPrivacyPolicy = document.getElementsByName('acceptedPrivacyPolicy')[0];
+        
+        // Retrieve the parents of the fields
+        var parentsPwd = nativElemPwd.parentNode.parentNode.parentNode;
+        var parentsFirstName = nativElemFirstName.parentNode.parentNode.parentNode;
+        var parentsLastName = nativElemLastName.parentNode.parentNode.parentNode;
+        var parentsEmail = nativElemEmail.parentNode.parentNode.parentNode;
+        var parentsAcceptedPrivacyPolicy = nativElemAcceptedPrivacyPolicy.parentNode.parentNode.parentNode;
+        
+        // Hide original drop-down field
+        parentsAcceptedPrivacyPolicy.style.display = "none";
+              
+        // Add checkbox
+        parentsAcceptedPrivacyPolicy.insertAdjacentHTML('afterend', '<span data-se="o-form-input-my-acceptedPrivacyPolicy" class="o-form-input-name-remember"><div class="custom-checkbox"><input type="checkbox" name="my-acceptedPrivacyPolicy" id="my-acceptedPrivacyPolicy"><label id="label-my-acceptedPrivacyPolicy" for="my-acceptedPrivacyPolicy" data-se-for-name="my-acceptedPrivacyPolicy" class="">Accept the <a href="https://www.okta.com/privacy-policy/" target="_blank" id="link-acceptedPrivacyPolicy" style="color:blue">Privacy Policy</a>.</label>');
+
+        // Recovery of the field
+        var newElemAcceptedPrivacyPolicy = document.getElementById('my-acceptedPrivacyPolicy');
+
+        // Re-organise the form
+        var form = document.getElementsByClassName("o-form-fieldset-container")[0];
+        form.insertBefore(parentsFirstName, form.firstChild);
+        $(parentsLastName).insertAfter(parentsFirstName);
+        $(parentsEmail).insertAfter(parentsLastName);
+        $(parentsPwd).insertAfter(parentsEmail);
+        $('subschemas-password').insertAfter(parentsPwd);
+
+           // Management of Accepted Privacy Policy events
+           newElemAcceptedPrivacyPolicy.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          // Toggle check
+          var labelAcceptedPrivacyPolicy = document.getElementById('label-my-acceptedPrivacyPolicy');
+          if (labelAcceptedPrivacyPolicy.className === "checked") {
+            labelAcceptedPrivacyPolicy.className = "";
+            newElemAcceptedPrivacyPolicy.checked = false;
+            document.getElementsByName('acceptedPrivacyPolicy')[0].value = "";
+            labelAcceptedPrivacyPolicy.insertAdjacentHTML('afterend', "<p id='acceptedPrivacyPolicy-error'>You must accept to the privacy policy.</p>");         
+          } 
+          else {
+            labelAcceptedPrivacyPolicy.className = "checked";
+            newElemAcceptedPrivacyPolicy.checked = true;
+            document.getElementsByName('acceptedPrivacyPolicy')[0].value = true;       
+            var errorAcceptedPrivacyPolicy = document.getElementById("acceptedPrivacyPolicy-error");
+            if (errorAcceptedPrivacyPolicy != undefined) {                 
+              errorAcceptedPrivacyPolicy.parentNode.removeChild(errorAcceptedPrivacyPolicy);                    
+            }
+          }
+          // set DOM reference variable
+          var field = document.getElementsByName('acceptedPrivacyPolicy')[0];
+          // create event with bubble set to true
+          var event = new Event("change", { bubbles: true });
+          // dispatch event for the desired DOM reference
+          field.dispatchEvent(event);
+        });
+        
+      }
+});
+
+if (oktaSignIn.token.hasTokensInUrl()) 
+       { 
+         oktaSignIn.token.parseTokensFromUrl(
+           // If we get here, the user just logged in.
+           function success(res) {			 
+              var accessToken = res[0];
+              var idToken = res[1];
+ 
+              oktaSignIn.tokenManager.add('accessToken', accessToken);
+              oktaSignIn.tokenManager.add('idToken', idToken);			
+             window.location.hash = '';
+              window.location.hash = '';
+             
+           },
+           function error(err) {
+             // console.error(err);
+           }
+         )
+       } else {
+         
+         oktaSignIn.session.get(function (res) {
+           // If we get here, the user is already signed in.
+           if (res.status === 'ACTIVE') {
+              window.location.replace("[URL]
+             
+             return;
+           }
+           oktaSignIn.renderEl(
+             { el: '#okta-login-container' },
+              function success(res) {  
+                var key = '';
+                if (res.tokens) {
+                  oktaSignIn.authClient.tokenManager.add('accessToken', res.tokens.accessToken);
+                  oktaSignIn.authClient.tokenManager.add('idToken', res.tokens.idToken);
+                  if (res.status === 'SUCCESS') {
+                    login(res.tokens.idToken, res.tokens.accessToken);
+                  }
+                }
+             },
+             function error(err) {
+               console.error(err);
+             }
+           );
+           
+         });
+       }
+     </script>
