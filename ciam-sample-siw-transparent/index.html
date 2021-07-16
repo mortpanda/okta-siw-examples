@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html style="font-size: 16px;">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="PLACE YOUR ORDER">
+    <meta name="description" content="">
+    <meta name="page_type" content="np-template-header-footer-from-plugin">
+    <title>index</title>
+    <link rel="stylesheet" href="nicepage.css" media="screen">
+<link rel="stylesheet" href="index.css" media="screen">
+    <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
+    <meta name="generator" content="Nicepage 3.20.4, nicepage.com">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
+    <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i">
+    <!------------------------------------------------------------------->
+<!-- For Dark Mode -->
+<!------------------------------------------------------------------->
+<style>
+  #okta-sign-in * {
+  color: white;
+}
+
+  #okta-sign-in.auth-container.main-container[data-se=auth-container] {
+    border-color: transparent;        
+    background-color: transparent;
+  }
+
+  #okta-sign-in .o-form .o-form-input #okta-signin-username {
+    background: white;
+    color: #000000;    
+  }
+
+  #okta-sign-in .o-form-input-name-username {
+    border: 1 !important;
+    color: #000000;
+  }
+
+  #okta-sign-in .o-form .o-form-input #okta-signin-password {
+    background: white;
+    color: #000000;
+  }
+
+  #okta-sign-in .o-form-input-name-password {
+    border: 1 !important;
+    color: #000000;
+  }
+
+  #okta-sign-in.auth-container .o-form-head {
+    color: transparent;
+    border-color: transparent;   
+  }
+
+  #okta-sign-in .auth-divider .auth-divider-text {
+    background-color: #fff0;
+    color: black;
+    position: relative;
+    top: -.5em;
+    padding: 0 15px;
+}
+
+  #okta-sign-in.auth-container .button-primary {
+    background: #00297A !important;
+    border: 1 !important;
+    
+  }
+
+  #okta-sign-in.auth-container.main-container .auth-footer {
+    color: #dddddd !important;
+    border-color: transparent;        
+  }
+
+  #okta-sign-in.auth-container.main-container .auth-header {
+    border-color: #111;
+    border-color: transparent;        
+  
+  }
+  
+  #okta-sign-in.no-beacon .auth-content {
+    padding-top: 9px;
+  }
+
+  #okta-sign-in .o-form-head {
+    font-size: 1px;
+    line-height: 1.5;
+    margin-top: 0;
+    text-align: center;
+    text-transform: none;
+}
+#okta-sign-in.auth-container a.link:link {
+  color: white;
+}
+
+
+</style> 
+<!------------------------------------------------------------------->
+<!-- For Dark Mode -->
+<!------------------------------------------------------------------->
+    
+    <script type="application/ld+json">{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"name": ""
+}</script>
+    <meta name="theme-color" content="#478ac9">
+    <meta property="og:title" content="index">
+    <meta property="og:type" content="website">
+  </head>
+  <body data-home-page="index.html" data-home-page-title="index" class="u-body u-overlap u-overlap-contrast u-overlap-transparent"><header class="u-clearfix u-header u-header" id="sec-8778"><div class="u-clearfix u-sheet u-sheet-1"></div></header>
+    <section class="u-align-center u-clearfix u-image u-shading u-section-1" id="carousel_d718" data-image-width="1554" data-image-height="1080">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <img class="u-image u-image-default u-image-1" src="images/Logo_Okta_Blue_RGB.png" alt="" data-image-width="500" data-image-height="169">
+        <h1></h1><br>
+        <h1 class="u-align-center u-text u-text-default u-text-1">Sign In</h1>
+        <!-- <p class="u-text u-text-2">Your adventure start from here</p> -->
+        <p class="u-text u-text-3">
+      <!-- widget stuff here -->
+      <script src="https://ok1static.oktacdn.com/assets/js/sdk/okta-signin-widget/2.16.0/js/okta-sign-in.min.js"type="text/javascript"></script>
+      <link href="https://ok1static.oktacdn.com/assets/js/sdk/okta-signin-widget/2.16.0/css/okta-sign-in.min.css"type="text/css" rel="stylesheet" />
+     <link href="https://ok1static.oktacdn.com/assets/js/sdk/okta-signin-widget/2.16.0/css/okta-theme.css"type="text/css" rel="stylesheet" />     
+       
+          <div id="okta-login-container"></div> 
+          <script type="text/javascript">
+          const oktaSignIn = new OktaSignIn({
+          //logo: 'https://www.okta.com/sites/default/files/media/image/2021-03/Logo_Okta_Blue_RGB.png',
+  
+          i18n: {
+              //Overrides default text when using English. Override other languages by adding additional sections.
+              'en': {
+                'primaryauth.title': 'Log In',             // Changes the sign in text
+                'primaryauth.submit': 'Log In',            // Changes the sign in button
+                'errors.E0000004' : 'Signin Failed / ログインに失敗しました',
+                // More e.g. [primaryauth.username.placeholder,  primaryauth.password.placeholder, needhelp, etc.].
+                // Full list here: https://github.com/okta/okta-signin-widget/blob/master/packages/@okta/i18n/dist/properties/login.properties
+              }
+            },
+          features: {
+          registration: true,                           // Enable self-service registration flow
+          rememberMe: false,                             // Setting to false will remove the checkbox to save username
+          },
+           baseUrl: "",
+           redirectUri: "",
+           clientId: "",   //CLIENT ID GOES HERE
+           authParams: {
+             issuer: '',
+           //  issuer: 'default',
+             responseType: ['token', 'id_token'],
+             responseMode: 'fragment',
+              display: 'page',
+               scope: [
+                'openid',
+                'email',
+                'profile'
+              ]
+           },
+            idpDisplay: 'SECONDARY',
+            idps: [{'type': 'FACEBOOK', 'id': ''},
+                    {'type': 'GOOGLE', 'id': ''}],
+           
+        });
+  
+  if (oktaSignIn.token.hasTokensInUrl()) 
+         { 
+           oktaSignIn.token.parseTokensFromUrl(
+             // If we get here, the user just logged in.
+             function success(res) {			 
+                var accessToken = res[0];
+                var idToken = res[1];
+   
+                oktaSignIn.tokenManager.add('accessToken', accessToken);
+                oktaSignIn.tokenManager.add('idToken', idToken);			
+               window.location.hash = '';
+                window.location.hash = '';              
+             },
+             function error(err) {
+               // console.error(err);
+             }
+           )
+         } else {
+           oktaSignIn.session.get(function (res) {
+             // If we get here, the user is already signed in.
+             if (res.status === 'ACTIVE') {              
+                window.location.replace("");
+               
+               return;
+             }
+             
+             oktaSignIn.renderEl(
+               { el: '#okta-login-container' },
+                function success(res) {  
+                  var key = '';
+                  if (res.tokens) {
+                    oktaSignIn.authClient.tokenManager.add('accessToken', res.tokens.accessToken);
+                    oktaSignIn.authClient.tokenManager.add('idToken', res.tokens.idToken);
+                    if (res.status === 'SUCCESS') {
+                      login(res.tokens.idToken, res.tokens.accessToken);
+                    }
+                  }
+               },
+               
+               function error(err) {
+                 console.error(err);
+               }
+             );
+             
+           });
+         }
+          </script>
+        </p>
+      </div>
+    </section>
+  </body>
+</html>
