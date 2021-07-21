@@ -51,7 +51,6 @@
       <div id="okta-login-container"></div> 
       <script type="text/javascript">
         const oktaSignIn = new OktaSignIn({
-        //logo: 'https://www.okta.com/sites/default/files/media/image/2021-03/Logo_Okta_Blue_RGB.png',
 
         i18n: {
             //Overrides default text when using English. Override other languages by adding additional sections.
@@ -66,13 +65,9 @@
          features: {
          registration: true,                           // Enable self-service registration flow
          rememberMe: true,                             // Setting to false will remove the checkbox to save username
-         multiOptionalFactorEnroll: true, 
-
-         
+         multiOptionalFactorEnroll: true,          
          },
- 
 
-         
          baseUrl: "",
          redirectUri: "",
          clientId: "",   //CLIENT ID GOES HERE
@@ -82,14 +77,10 @@
            responseType: ['token', 'id_token'],
            responseMode: 'fragment',
             display: 'page',
-
              scope: [
               'openid',
               'email',
               'profile'
-              //'address',
-              //'phone',
-              //'groups'
             ]
          },
          idpDisplay: 'SECONDARY',
@@ -207,8 +198,6 @@ if (oktaSignIn.token.hasTokensInUrl())
               oktaSignIn.tokenManager.add('accessToken', accessToken);
               oktaSignIn.tokenManager.add('idToken', idToken);			
              window.location.hash = '';
-             // document.getElementById("messageBox").style.color = "	#FFFFFF";
-             // document.getElementById("messageBox").innerHTML = "Hello, " + idToken.claims.email + "! You just logged in! :)";
               window.location.hash = '';
              
            },
@@ -221,10 +210,7 @@ if (oktaSignIn.token.hasTokensInUrl())
          oktaSignIn.session.get(function (res) {
            // If we get here, the user is already signed in.
            if (res.status === 'ACTIVE') {
-             
-             // document.getElementById("messageBox").style.color = "	#FFFFFF";
-             // document.getElementById("messageBox").innerHTML = "Hello, " + res.login + "! You are *still* logged in! :)";
-              window.location.replace("https://ciam-sample-1.white-lions-den.duckdns.org/");
+              window.location.replace("");
              
              return;
            }
@@ -250,19 +236,6 @@ if (oktaSignIn.token.hasTokensInUrl())
          });
        }
 
-// oktaSignIn.renderEl( //Caution editing this section as you may break the demo.
-//     {el: '#okta-login-container'},
-//     function (res) {
-//         var key = '';
-//         if (res.tokens) {
-//             oktaSignIn.authClient.tokenManager.add('accessToken', res.tokens.accessToken);
-//             oktaSignIn.authClient.tokenManager.add('idToken', res.tokens.idToken);
-//             if (res.status === 'SUCCESS') {
-//                 login(res.tokens.idToken, res.tokens.accessToken);
-//             }
-//         }
-//     }
-// );
      </script>
 
 

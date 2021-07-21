@@ -137,9 +137,6 @@
                'openid',
                'email',
                'profile'
-               //'address',
-               //'phone',
-               //'groups'
              ]
              
         },
@@ -260,8 +257,6 @@ if (oktaSignIn.token.hasTokensInUrl())
               oktaSignIn.tokenManager.add('accessToken', accessToken);
               oktaSignIn.tokenManager.add('idToken', idToken);			
              window.location.hash = '';
-             // document.getElementById("messageBox").style.color = "	#FFFFFF";
-             // document.getElementById("messageBox").innerHTML = "Hello, " + idToken.claims.email + "! You just logged in! :)";
               window.location.hash = '';
              
            },
@@ -274,10 +269,8 @@ if (oktaSignIn.token.hasTokensInUrl())
          oktaSignIn.session.get(function (res) {
            // If we get here, the user is already signed in.
            if (res.status === 'ACTIVE') {
-             
-             // document.getElementById("messageBox").style.color = "	#FFFFFF";
-             // document.getElementById("messageBox").innerHTML = "Hello, " + res.login + "! You are *still* logged in! :)";
-              window.location.replace("https://ciam-sample-1.white-lions-den.duckdns.org/");
+
+              window.location.replace("");
              
              return;
            }
